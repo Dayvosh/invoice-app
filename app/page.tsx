@@ -26,11 +26,9 @@ export default function Home() {
   const [logo, setLogo] = useState(null)
   const [ready, setReady] = useState(false)
 
-  const updateField = (field, value) => {
-    setForm(prev => ({ ...prev, [field]: value }))
-  }
+  const updateField = (field: string, value: string) => {
 
-  const updateLineItem = (index, field, value) => {
+  const updateLineItem = (index: number, field: string, value: string) => {
     const updated = [...lineItems]
     updated[index][field] = value
     setLineItems(updated)
