@@ -67,16 +67,13 @@ export default function Home() {
         <style>{`
           * { box-sizing: border-box; margin: 0; padding: 0; }
           body { background: #f0f0ee; }
-
           .pv-wrap { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; letter-spacing: -0.02em; }
           .pv-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
           .pv-heading { font-size: 18px; font-weight: 600; color: #111; letter-spacing: -.02em; }
           .pv-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
           .pv-back { padding: 10px 16px; background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; cursor: pointer; color: #333; font-size: 13px; font-weight: 500; font-family: inherit; transition: all .15s; }
           .pv-back:hover { border-color: #111; }
-
           .pv-card { background: #fff; border-radius: 16px; padding: 24px; border: 1px solid #e8e8e8; margin-bottom: 10px; }
-
           .pv-inv-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; gap: 12px; }
           .pv-logo { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; display: block; margin-bottom: 10px; }
           .pv-company-name { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 3px; }
@@ -86,15 +83,12 @@ export default function Home() {
           .pv-inv-num { font-size: 11px; color: #aaa; margin-top: 3px; margin-bottom: 12px; }
           .pv-amt-label { font-size: 9px; color: #aaa; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
           .pv-amt { font-size: 16px; font-weight: 600; color: #111; }
-
           .pv-divider { border: none; border-top: 1px solid #f0f0f0; margin: 0 0 20px; }
-
           .pv-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
           .pv-meta-full { grid-column: 1 / -1; }
           .pv-meta-label { font-size: 9px; font-weight: 600; color: #bbb; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
           .pv-meta-value { font-size: 13px; color: #111; margin-bottom: 2px; font-weight: 500; }
           .pv-meta-muted { font-size: 11px; color: #aaa; margin-bottom: 1px; }
-
           .pv-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
           .pv-table thead th { font-size: 9px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: .06em; padding: 8px 10px; background: #f7f7f7; text-align: left; }
           .pv-table thead th.r { text-align: right; }
@@ -103,7 +97,6 @@ export default function Home() {
           .pv-table tbody td.r { text-align: right; }
           .pv-table tbody td.c { text-align: center; }
           .pv-table tbody tr:nth-child(even) td { background: #fafafa; }
-
           .pv-totals { display: flex; justify-content: flex-end; margin-bottom: 20px; }
           .pv-totals-inner { width: 220px; }
           .pv-tot-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 12px; color: #888; border-bottom: 1px solid #f5f5f5; }
@@ -111,16 +104,13 @@ export default function Home() {
           .pv-tot-grand { display: flex; justify-content: space-between; align-items: center; background: #111; border-radius: 8px; padding: 10px 14px; margin-top: 6px; }
           .pv-tot-grand-label { font-size: 12px; font-weight: 600; color: #fff; }
           .pv-tot-grand-val { font-size: 14px; font-weight: 600; color: #fff; }
-
           .pv-payment { background: #f9f9f9; border-radius: 10px; padding: 16px; }
           .pv-payment-title { font-size: 9px; font-weight: 600; color: #bbb; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
           .pv-payment-row { display: flex; gap: 10px; margin-bottom: 6px; font-size: 12px; }
           .pv-payment-key { color: #aaa; width: 110px; flex-shrink: 0; }
           .pv-payment-val { color: #333; font-weight: 500; }
-
           .dl-btn { width: 100%; padding: 16px; background: #111; color: #fff; border: none; border-radius: 14px; font-size: 15px; font-weight: 500; cursor: pointer; letter-spacing: -.01em; text-decoration: none; display: block; text-align: center; font-family: inherit; transition: background .15s; margin-top: 4px; }
           .dl-btn:hover { background: #333; }
-
           @media (max-width: 480px) {
             .pv-wrap { padding: 16px 12px 80px; }
             .pv-card { padding: 16px; }
@@ -239,7 +229,6 @@ export default function Home() {
         ::placeholder { color: #bbb !important; opacity: 1; }
 
         .wrap { max-width: 640px; margin: 0 auto; padding: 40px 16px 100px; letter-spacing: -0.02em; }
-
         .page-title { font-size: 26px; font-weight: 600; color: #111; margin-bottom: 6px; letter-spacing: -.03em; }
         .page-sub { font-size: 14px; color: #999; margin-bottom: 32px; }
 
@@ -270,7 +259,19 @@ export default function Home() {
         }
         .input:focus { border-color: #111; background: #fff; }
 
-        input[type="date"].input { color: #bbb; min-height: 48px; }
+        input[type="date"].input {
+          color: #bbb;
+          min-height: 48px;
+        }
+        input[type="date"].input:before {
+          content: attr(placeholder);
+          color: #bbb;
+          pointer-events: none;
+        }
+        input[type="date"].input:focus:before,
+        input[type="date"].input.has-value:before {
+          display: none;
+        }
         input[type="date"].input::-webkit-datetime-edit { color: #bbb; }
         input[type="date"].input::-webkit-datetime-edit-fields-wrapper { color: #bbb; }
         input[type="date"].input.has-value { color: #111; }
@@ -280,12 +281,10 @@ export default function Home() {
         input[type="number"].input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 
         @media (max-width: 480px) {
           .wrap { padding: 24px 12px 100px; }
           .two-col { grid-template-columns: 1fr; }
-          .three-col { grid-template-columns: 1fr; }
           .page-title { font-size: 22px; }
         }
 
@@ -345,7 +344,6 @@ export default function Home() {
             <div className="card-num">1</div>
             <div className="card-title">Your business</div>
           </div>
-
           <div className="field">
             <label className="label">Company logo</label>
             <label className="logo-box" style={{cursor:'pointer'}}>
@@ -361,7 +359,6 @@ export default function Home() {
             </label>
             <span className="logo-hint">PNG or JPG · Appears on your PDF</span>
           </div>
-
           <div className="field">
             <label className="label">Company name</label>
             <input className="input" placeholder="Taxaide Technologies" value={form.companyName} onChange={e => updateField('companyName', e.target.value)} />
@@ -411,6 +408,7 @@ export default function Home() {
                 <input
                   className={`input${form.invoiceDate ? ' has-value' : ''}`}
                   type="date"
+                  placeholder="DD/MM/YY"
                   value={form.invoiceDate}
                   onChange={e => updateField('invoiceDate', e.target.value)}
                   style={{paddingRight:'44px'}}
@@ -424,6 +422,7 @@ export default function Home() {
                 <input
                   className={`input${form.dueDate ? ' has-value' : ''}`}
                   type="date"
+                  placeholder="DD/MM/YY"
                   value={form.dueDate}
                   onChange={e => updateField('dueDate', e.target.value)}
                   style={{paddingRight:'44px'}}
@@ -439,7 +438,6 @@ export default function Home() {
             <div className="card-num">4</div>
             <div className="card-title">Line items</div>
           </div>
-
           {lineItems.map((item, index) => (
             <div key={index} className="line-item">
               <div className="line-item-num">Item {index + 1}</div>
@@ -462,9 +460,7 @@ export default function Home() {
               )}
             </div>
           ))}
-
           <button className="add-btn" onClick={addLineItem}>+ Add line item</button>
-
           <div className="vat-toggle-row">
             <div>
               <div className="vat-text">Apply VAT</div>
@@ -472,7 +468,6 @@ export default function Home() {
             </div>
             <button className={`toggle ${applyVat ? 'on' : ''}`} onClick={() => setApplyVat(!applyVat)} />
           </div>
-
           {applyVat && (
             <div className="vat-rate-row">
               <span className="vat-rate-label">VAT rate</span>
