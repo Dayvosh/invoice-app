@@ -262,19 +262,11 @@ export default function Home() {
         input[type="date"].input {
           color: #bbb;
           min-height: 48px;
-        }
-        input[type="date"].input:before {
-          content: attr(placeholder);
-          color: #bbb;
-          pointer-events: none;
-        }
-        input[type="date"].input:focus:before,
-        input[type="date"].input.has-value:before {
-          display: none;
+          text-align: left;
         }
         input[type="date"].input::-webkit-datetime-edit { color: #bbb; }
         input[type="date"].input::-webkit-datetime-edit-fields-wrapper { color: #bbb; }
-        input[type="date"].input.has-value { color: #111; }
+        input[type="date"].input.has-value { color: #111; text-align: left; }
         input[type="date"].input.has-value::-webkit-datetime-edit { color: #111; }
         input[type="date"].input.has-value::-webkit-datetime-edit-fields-wrapper { color: #111; }
         input[type="number"].input::-webkit-outer-spin-button,
@@ -404,31 +396,23 @@ export default function Home() {
           <div className="two-col">
             <div className="field">
               <label className="label">Issue date</label>
-              <div style={{position:'relative'}}>
-                <input
-                  className={`input${form.invoiceDate ? ' has-value' : ''}`}
-                  type="date"
-                  placeholder="DD/MM/YY"
-                  value={form.invoiceDate}
-                  onChange={e => updateField('invoiceDate', e.target.value)}
-                  style={{paddingRight:'44px'}}
-                />
-                <svg style={{position:'absolute',right:'14px',top:'50%',transform:'translateY(-50%)',pointerEvents:'none'}} width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="#bbb" strokeWidth="1.3"/><path d="M6 1v3M12 1v3M2 7h14" stroke="#bbb" strokeWidth="1.3" strokeLinecap="round"/></svg>
-              </div>
+              <input
+                className={`input${form.invoiceDate ? ' has-value' : ''}`}
+                type="date"
+                placeholder="DD/MM/YY"
+                value={form.invoiceDate}
+                onChange={e => updateField('invoiceDate', e.target.value)}
+              />
             </div>
             <div className="field">
               <label className="label">Due date</label>
-              <div style={{position:'relative'}}>
-                <input
-                  className={`input${form.dueDate ? ' has-value' : ''}`}
-                  type="date"
-                  placeholder="DD/MM/YY"
-                  value={form.dueDate}
-                  onChange={e => updateField('dueDate', e.target.value)}
-                  style={{paddingRight:'44px'}}
-                />
-                <svg style={{position:'absolute',right:'14px',top:'50%',transform:'translateY(-50%)',pointerEvents:'none'}} width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="#bbb" strokeWidth="1.3"/><path d="M6 1v3M12 1v3M2 7h14" stroke="#bbb" strokeWidth="1.3" strokeLinecap="round"/></svg>
-              </div>
+              <input
+                className={`input${form.dueDate ? ' has-value' : ''}`}
+                type="date"
+                placeholder="DD/MM/YY"
+                value={form.dueDate}
+                onChange={e => updateField('dueDate', e.target.value)}
+              />
             </div>
           </div>
         </div>
