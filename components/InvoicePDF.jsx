@@ -1,4 +1,12 @@
-import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'
+import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer'
+
+Font.register({
+  family: 'GeistMono',
+  fonts: [
+    { src: 'https://fonts.gstatic.com/s/geistmono/v1/or3NQ6H71RcLxj_yFp_R0A.woff2', fontWeight: 400 },
+    { src: 'https://fonts.gstatic.com/s/geistmono/v1/or3NQ6H71RcLxj_yFp_R0A.woff2', fontWeight: 700 },
+  ]
+})
 
 const styles = StyleSheet.create({
   page: {
@@ -9,7 +17,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     fontSize: 10,
   },
-
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -38,16 +45,15 @@ const styles = StyleSheet.create({
   },
   invoiceWord: {
     fontSize: 30,
-    fontFamily: 'Helvetica',
+    fontFamily: 'Courier',
     color: '#111',
-    letterSpacing: 0,
   },
   invoiceDate: {
     fontSize: 10,
+    fontFamily: 'Courier',
     color: '#888',
     marginTop: 4,
   },
-
   metaSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -68,15 +74,17 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginBottom: 4,
+    fontFamily: 'Helvetica-Bold',
   },
   metaClientName: {
     fontSize: 14,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: 'Courier-Bold',
     color: '#111',
     marginBottom: 4,
   },
   metaDetail: {
     fontSize: 9,
+    fontFamily: 'Courier',
     color: '#666',
     marginBottom: 2,
   },
@@ -92,13 +100,13 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginBottom: 4,
+    fontFamily: 'Helvetica-Bold',
   },
   metaAmount: {
     fontSize: 20,
     fontFamily: 'Courier-Bold',
     color: '#111',
   },
-
   tableContainer: {
     marginBottom: 0,
   },
@@ -125,20 +133,13 @@ const styles = StyleSheet.create({
   tableCell: {
     fontSize: 10,
     color: '#333',
-    fontFamily: 'Helvetica',
-  },
-  tableCellMono: {
-    fontSize: 10,
-    color: '#333',
     fontFamily: 'Courier',
   },
-
   colDesc: { flex: 3 },
   colDue: { flex: 2 },
   colQty: { flex: 1, textAlign: 'center' },
   colRate: { flex: 2, textAlign: 'right' },
   colAmount: { flex: 2, textAlign: 'right' },
-
   totalsSection: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -147,7 +148,6 @@ const styles = StyleSheet.create({
   },
   totalsTable: {
     width: 220,
-    borderTopWidth: 0,
   },
   totalsRow: {
     flexDirection: 'row',
@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
   totalsLabel: {
     fontSize: 10,
     color: '#888',
+    fontFamily: 'Courier',
   },
   totalsValue: {
     fontSize: 10,
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
   },
   grandTotalLabel: {
     fontSize: 11,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: 'Courier-Bold',
     color: '#111',
   },
   grandTotalValue: {
@@ -182,18 +183,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier-Bold',
     color: '#111',
   },
-
   bottomSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginTop: 20,
     paddingTop: 20,
     borderTopWidth: 1,
     borderTopColor: '#eee',
-  },
-  paymentBlock: {
-    flex: 1,
+    marginBottom: 24,
   },
   paymentTitle: {
     fontSize: 8,
@@ -211,30 +205,13 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: '#888',
     width: 100,
+    fontFamily: 'Courier',
   },
   paymentValue: {
     fontSize: 9,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: 'Courier-Bold',
     color: '#333',
   },
-
-  signatureBlock: {
-    alignItems: 'flex-end',
-    width: 140,
-  },
-  signatureLine: {
-    width: 120,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    marginBottom: 6,
-    marginTop: 16,
-  },
-  signatureName: {
-    fontSize: 9,
-    color: '#555',
-    textAlign: 'center',
-  },
-
   footer: {
     position: 'absolute',
     bottom: 24,
@@ -246,29 +223,18 @@ const styles = StyleSheet.create({
     borderTopColor: '#eee',
     paddingTop: 10,
   },
-  footerCol: {
-    flex: 1,
-  },
-  footerLabel: {
-    fontSize: 7,
+  footerText: {
+    fontSize: 8,
     color: '#bbb',
-    marginBottom: 2,
-  },
-  footerLink: {
-    fontSize: 8,
-    color: '#555',
-    textDecoration: 'underline',
-  },
-  footerRight: {
-    flex: 2,
-    alignItems: 'flex-end',
-  },
-  footerDetail: {
-    fontSize: 8,
-    color: '#888',
-    marginBottom: 2,
+    fontFamily: 'Courier',
   },
 })
+
+const formatDate = (dateStr: string) => {
+  if (!dateStr) return '—'
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' })
+}
 
 export default function InvoicePDF({ form, lineItems, logo, applyVat, vatRate }) {
   const subtotal = lineItems.reduce((sum, item) => sum + (Number(item.quantity) * Number(item.rate)), 0)
@@ -293,7 +259,7 @@ export default function InvoicePDF({ form, lineItems, logo, applyVat, vatRate })
           </View>
           <View style={styles.invoiceTitleBlock}>
             <Text style={styles.invoiceWord}>Invoice</Text>
-            <Text style={styles.invoiceDate}>{form.invoiceDate}</Text>
+            <Text style={styles.invoiceDate}>{formatDate(form.invoiceDate)}</Text>
           </View>
         </View>
 
@@ -324,10 +290,10 @@ export default function InvoicePDF({ form, lineItems, logo, applyVat, vatRate })
           {lineItems.map((item, i) => (
             <View key={i} style={styles.tableRow}>
               <Text style={[styles.tableCell, styles.colDesc]}>{item.description}</Text>
-              <Text style={[styles.tableCell, styles.colDue]}>{form.dueDate}</Text>
-              <Text style={[styles.tableCellMono, styles.colQty]}>{item.quantity}</Text>
-              <Text style={[styles.tableCellMono, styles.colRate]}>{fmt(item.rate)}</Text>
-              <Text style={[styles.tableCellMono, styles.colAmount]}>{fmt(Number(item.quantity) * Number(item.rate))}</Text>
+              <Text style={[styles.tableCell, styles.colDue]}>{formatDate(form.dueDate)}</Text>
+              <Text style={[styles.tableCell, styles.colQty, {textAlign:'center'}]}>{item.quantity}</Text>
+              <Text style={[styles.tableCell, styles.colRate, {textAlign:'right'}]}>{fmt(item.rate)}</Text>
+              <Text style={[styles.tableCell, styles.colAmount, {textAlign:'right'}]}>{fmt(Number(item.quantity) * Number(item.rate))}</Text>
             </View>
           ))}
         </View>
@@ -352,37 +318,24 @@ export default function InvoicePDF({ form, lineItems, logo, applyVat, vatRate })
         </View>
 
         <View style={styles.bottomSection}>
-          <View style={styles.paymentBlock}>
-            <Text style={styles.paymentTitle}>Payment details</Text>
-            <View style={styles.paymentRow}>
-              <Text style={styles.paymentKey}>Account Name</Text>
-              <Text style={styles.paymentValue}>{form.accountName}</Text>
-            </View>
-            <View style={styles.paymentRow}>
-              <Text style={styles.paymentKey}>Account Number</Text>
-              <Text style={styles.paymentValue}>{form.accountNumber}</Text>
-            </View>
-            <View style={styles.paymentRow}>
-              <Text style={styles.paymentKey}>Bank Name</Text>
-              <Text style={styles.paymentValue}>{form.bankName}</Text>
-            </View>
+          <Text style={styles.paymentTitle}>Payment details</Text>
+          <View style={styles.paymentRow}>
+            <Text style={styles.paymentKey}>Account Name</Text>
+            <Text style={styles.paymentValue}>{form.accountName}</Text>
           </View>
-
-          <View style={styles.signatureBlock}>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureName}>{form.companyName}</Text>
+          <View style={styles.paymentRow}>
+            <Text style={styles.paymentKey}>Account Number</Text>
+            <Text style={styles.paymentValue}>{form.accountNumber}</Text>
+          </View>
+          <View style={styles.paymentRow}>
+            <Text style={styles.paymentKey}>Bank Name</Text>
+            <Text style={styles.paymentValue}>{form.bankName}</Text>
           </View>
         </View>
 
         <View style={styles.footer}>
-          <View style={styles.footerCol}>
-            <Text style={styles.footerLabel}>Generated by</Text>
-            <Text style={styles.footerLink}>Invoice App</Text>
-          </View>
-          <View style={styles.footerRight}>
-            <Text style={styles.footerDetail}>{form.companyAddress}</Text>
-            <Text style={styles.footerDetail}>{form.companyEmail}</Text>
-          </View>
+          <Text style={styles.footerText}>{form.companyName}</Text>
+          <Text style={styles.footerText}>Generated by Invoice App</Text>
         </View>
 
       </Page>

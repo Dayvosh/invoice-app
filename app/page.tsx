@@ -69,7 +69,6 @@ export default function Home() {
           body { background: #f0f0ee; }
 
           .pv-wrap { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; letter-spacing: -0.02em; }
-
           .pv-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
           .pv-heading { font-size: 18px; font-weight: 600; color: #111; letter-spacing: -.02em; }
           .pv-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
@@ -241,7 +240,6 @@ export default function Home() {
 
         .wrap { max-width: 640px; margin: 0 auto; padding: 40px 16px 100px; letter-spacing: -0.02em; }
 
-        .page-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #999; margin-bottom: 6px; }
         .page-title { font-size: 26px; font-weight: 600; color: #111; margin-bottom: 6px; letter-spacing: -.03em; }
         .page-sub { font-size: 14px; color: #999; margin-bottom: 32px; }
 
@@ -272,10 +270,7 @@ export default function Home() {
         }
         .input:focus { border-color: #111; background: #fff; }
 
-        input[type="date"].input {
-          color: #bbb;
-          min-height: 48px;
-        }
+        input[type="date"].input { color: #bbb; min-height: 48px; }
         input[type="date"].input::-webkit-datetime-edit { color: #bbb; }
         input[type="date"].input::-webkit-datetime-edit-fields-wrapper { color: #bbb; }
         input[type="date"].input.has-value { color: #111; }
@@ -294,21 +289,7 @@ export default function Home() {
           .page-title { font-size: 22px; }
         }
 
-        .logo-box {
-          width: 100%;
-          height: 100px;
-          border-radius: 12px;
-          border: 1.5px dashed #ddd;
-          background: #fafafa;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          overflow: hidden;
-          transition: border-color .15s;
-          gap: 8px;
-        }
+        .logo-box { width: 100%; height: 100px; border-radius: 12px; border: 1.5px dashed #ddd; background: #fafafa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; transition: border-color .15s; gap: 8px; }
         .logo-box:hover { border-color: #111; }
         .logo-box img { width: 100%; height: 100%; object-fit: cover; }
         .logo-box-text { font-size: 13px; color: #bbb; }
@@ -356,7 +337,6 @@ export default function Home() {
       `}</style>
 
       <div className="wrap">
-        <p className="page-eyebrow">Invoice generator</p>
         <h1 className="page-title">Create an invoice</h1>
         <p className="page-sub">Fill in the details below</p>
 
@@ -427,21 +407,29 @@ export default function Home() {
           <div className="two-col">
             <div className="field">
               <label className="label">Issue date</label>
-              <input
-                className={`input${form.invoiceDate ? ' has-value' : ''}`}
-                type="date"
-                value={form.invoiceDate}
-                onChange={e => updateField('invoiceDate', e.target.value)}
-              />
+              <div style={{position:'relative'}}>
+                <input
+                  className={`input${form.invoiceDate ? ' has-value' : ''}`}
+                  type="date"
+                  value={form.invoiceDate}
+                  onChange={e => updateField('invoiceDate', e.target.value)}
+                  style={{paddingRight:'44px'}}
+                />
+                <svg style={{position:'absolute',right:'14px',top:'50%',transform:'translateY(-50%)',pointerEvents:'none'}} width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="#bbb" strokeWidth="1.3"/><path d="M6 1v3M12 1v3M2 7h14" stroke="#bbb" strokeWidth="1.3" strokeLinecap="round"/></svg>
+              </div>
             </div>
             <div className="field">
               <label className="label">Due date</label>
-              <input
-                className={`input${form.dueDate ? ' has-value' : ''}`}
-                type="date"
-                value={form.dueDate}
-                onChange={e => updateField('dueDate', e.target.value)}
-              />
+              <div style={{position:'relative'}}>
+                <input
+                  className={`input${form.dueDate ? ' has-value' : ''}`}
+                  type="date"
+                  value={form.dueDate}
+                  onChange={e => updateField('dueDate', e.target.value)}
+                  style={{paddingRight:'44px'}}
+                />
+                <svg style={{position:'absolute',right:'14px',top:'50%',transform:'translateY(-50%)',pointerEvents:'none'}} width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="#bbb" strokeWidth="1.3"/><path d="M6 1v3M12 1v3M2 7h14" stroke="#bbb" strokeWidth="1.3" strokeLinecap="round"/></svg>
+              </div>
             </div>
           </div>
         </div>
