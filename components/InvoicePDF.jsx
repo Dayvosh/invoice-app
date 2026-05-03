@@ -2,123 +2,125 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
 
 const styles = StyleSheet.create({
   page: {
-    padding: '40 48',
+    paddingTop: 40,
+    paddingBottom: 60,
+    paddingHorizontal: 44,
     fontFamily: 'Helvetica',
     backgroundColor: '#ffffff',
     fontSize: 10,
   },
-  header: {
+
+  headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 36,
+    marginBottom: 32,
+  },
+  logoBox: {
+    backgroundColor: '#2e7d32',
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 4,
   },
   logoImg: {
     width: 48,
     height: 48,
-    borderRadius: 8,
-    marginBottom: 10,
+    borderRadius: 6,
   },
-  companyName: {
-    fontSize: 12,
+  logoText: {
+    color: '#fff',
+    fontSize: 11,
     fontFamily: 'Helvetica-Bold',
-    color: '#111',
-    marginBottom: 3,
+    letterSpacing: 1,
   },
-  companyDetail: {
-    fontSize: 9,
-    color: '#999',
-    marginBottom: 2,
-  },
-  invoiceRight: {
+  invoiceTitleBlock: {
     alignItems: 'flex-end',
   },
-  invoiceTitle: {
-    fontSize: 24,
-    fontFamily: 'Helvetica-Bold',
-    color: '#111',
-    letterSpacing: 2,
-  },
-  invoiceNumber: {
-    fontSize: 10,
-    color: '#999',
-    marginTop: 4,
-    fontFamily: 'Courier',
-  },
-  amountLabel: {
-    fontSize: 8,
-    color: '#999',
-    marginTop: 12,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  amountValue: {
-    fontSize: 20,
-    fontFamily: 'Helvetica-Bold',
-    color: '#111',
-    marginTop: 3,
-    fontFamily: 'Courier-Bold',
-  },
-  divider: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-    marginBottom: 24,
-  },
-  metaRow: {
-    flexDirection: 'row',
-    marginBottom: 28,
-    gap: 0,
-  },
-  metaBlock: {
-    flex: 1,
-    paddingRight: 16,
-  },
-  metaLabel: {
-    fontSize: 8,
-    fontFamily: 'Helvetica-Bold',
-    color: '#bbb',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    marginBottom: 5,
-  },
-  metaValue: {
-    fontSize: 10,
-    color: '#111',
-    marginBottom: 2,
+  invoiceWord: {
+    fontSize: 30,
     fontFamily: 'Helvetica',
+    color: '#111',
+    letterSpacing: 0,
   },
-  metaValueMuted: {
-    fontSize: 9,
+  invoiceDate: {
+    fontSize: 10,
     color: '#888',
-    marginBottom: 1,
+    marginTop: 4,
   },
+
+  metaSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 28,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+  },
+  metaLeft: {
+    flex: 1,
+  },
+  metaRight: {
+    alignItems: 'flex-end',
+  },
+  metaSmallLabel: {
+    fontSize: 8,
+    color: '#aaa',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 4,
+  },
+  metaClientName: {
+    fontSize: 14,
+    fontFamily: 'Helvetica-Bold',
+    color: '#111',
+    marginBottom: 4,
+  },
+  metaDetail: {
+    fontSize: 9,
+    color: '#666',
+    marginBottom: 2,
+  },
+  metaInvoiceNumber: {
+    fontSize: 13,
+    fontFamily: 'Courier-Bold',
+    color: '#111',
+    marginBottom: 12,
+  },
+  metaAmountLabel: {
+    fontSize: 8,
+    color: '#aaa',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 4,
+  },
+  metaAmount: {
+    fontSize: 20,
+    fontFamily: 'Courier-Bold',
+    color: '#111',
+  },
+
   tableContainer: {
-    marginBottom: 20,
+    marginBottom: 0,
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#f7f7f7',
+    backgroundColor: '#f5f5f5',
     paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 4,
-    marginBottom: 2,
+    paddingHorizontal: 10,
   },
   tableHeaderText: {
     fontSize: 8,
     fontFamily: 'Helvetica-Bold',
-    color: '#999',
+    color: '#aaa',
     textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    letterSpacing: 0.8,
   },
   tableRow: {
     flexDirection: 'row',
     paddingVertical: 10,
-    paddingHorizontal: 12,
+    paddingHorizontal: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#f5f5f5',
-  },
-  tableRowAlt: {
-    backgroundColor: '#fafafa',
+    borderBottomColor: '#f0f0f0',
   },
   tableCell: {
     fontSize: 10,
@@ -130,22 +132,30 @@ const styles = StyleSheet.create({
     color: '#333',
     fontFamily: 'Courier',
   },
-  colDesc: { flex: 4 },
+
+  colDesc: { flex: 3 },
+  colDue: { flex: 2 },
   colQty: { flex: 1, textAlign: 'center' },
   colRate: { flex: 2, textAlign: 'right' },
   colAmount: { flex: 2, textAlign: 'right' },
+
   totalsSection: {
-    alignItems: 'flex-end',
-    marginTop: 8,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: 0,
     marginBottom: 32,
   },
-  totalsInner: {
+  totalsTable: {
     width: 220,
+    borderTopWidth: 0,
   },
   totalsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
   },
   totalsLabel: {
     fontSize: 10,
@@ -156,81 +166,114 @@ const styles = StyleSheet.create({
     color: '#333',
     fontFamily: 'Courier',
   },
-  totalsDivider: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    marginVertical: 6,
-  },
   grandTotalRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 6,
-    backgroundColor: '#111',
-    paddingHorizontal: 12,
-    borderRadius: 6,
-    marginTop: 4,
+    paddingHorizontal: 10,
   },
   grandTotalLabel: {
     fontSize: 11,
     fontFamily: 'Helvetica-Bold',
-    color: '#fff',
+    color: '#111',
   },
   grandTotalValue: {
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: 'Courier-Bold',
-    color: '#fff',
+    color: '#111',
   },
-  paymentSection: {
-    backgroundColor: '#f9f9f9',
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 24,
+
+  bottomSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginTop: 20,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+  },
+  paymentBlock: {
+    flex: 1,
   },
   paymentTitle: {
     fontSize: 8,
     fontFamily: 'Helvetica-Bold',
-    color: '#bbb',
+    color: '#aaa',
     textTransform: 'uppercase',
     letterSpacing: 1,
-    marginBottom: 12,
+    marginBottom: 10,
   },
   paymentRow: {
     flexDirection: 'row',
-    marginBottom: 6,
+    marginBottom: 5,
   },
   paymentKey: {
     fontSize: 9,
-    color: '#999',
-    width: 110,
+    color: '#888',
+    width: 100,
   },
   paymentValue: {
     fontSize: 9,
     fontFamily: 'Helvetica-Bold',
     color: '#333',
-    flex: 1,
   },
+
+  signatureBlock: {
+    alignItems: 'flex-end',
+    width: 140,
+  },
+  signatureLine: {
+    width: 120,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 6,
+    marginTop: 16,
+  },
+  signatureName: {
+    fontSize: 9,
+    color: '#555',
+    textAlign: 'center',
+  },
+
   footer: {
     position: 'absolute',
-    bottom: 28,
-    left: 48,
-    right: 48,
+    bottom: 24,
+    left: 44,
+    right: 44,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     borderTopWidth: 1,
-    borderTopColor: '#f0f0f0',
+    borderTopColor: '#eee',
     paddingTop: 10,
   },
-  footerText: {
+  footerCol: {
+    flex: 1,
+  },
+  footerLabel: {
+    fontSize: 7,
+    color: '#bbb',
+    marginBottom: 2,
+  },
+  footerLink: {
     fontSize: 8,
-    color: '#ccc',
+    color: '#555',
+    textDecoration: 'underline',
+  },
+  footerRight: {
+    flex: 2,
+    alignItems: 'flex-end',
+  },
+  footerDetail: {
+    fontSize: 8,
+    color: '#888',
+    marginBottom: 2,
   },
 })
 
-export default function InvoicePDF({ form, lineItems, logo }) {
+export default function InvoicePDF({ form, lineItems, logo, applyVat, vatRate }) {
   const subtotal = lineItems.reduce((sum, item) => sum + (Number(item.quantity) * Number(item.rate)), 0)
-  const vat = subtotal * 0.075
-  const total = subtotal + vat
+  const vatAmount = applyVat ? subtotal * (Number(vatRate) / 100) : 0
+  const total = subtotal + vatAmount
 
   const fmt = (n) => 'NGN ' + Number(n).toLocaleString('en-NG', { minimumFractionDigits: 2 })
 
@@ -238,51 +281,50 @@ export default function InvoicePDF({ form, lineItems, logo }) {
     <Document>
       <Page size="A4" style={styles.page}>
 
-        <View style={styles.header}>
+        <View style={styles.headerRow}>
           <View>
-            {logo && <Image src={logo} style={styles.logoImg} />}
-            <Text style={styles.companyName}>{form.companyName}</Text>
-            <Text style={styles.companyDetail}>{form.companyAddress}</Text>
-            <Text style={styles.companyDetail}>{form.companyEmail}</Text>
+            {logo ? (
+              <Image src={logo} style={styles.logoImg} />
+            ) : (
+              <View style={styles.logoBox}>
+                <Text style={styles.logoText}>{(form.companyName || 'COMPANY').toUpperCase()}</Text>
+              </View>
+            )}
           </View>
-          <View style={styles.invoiceRight}>
-            <Text style={styles.invoiceTitle}>INVOICE</Text>
-            <Text style={styles.invoiceNumber}>#{form.invoiceNumber}</Text>
-            <Text style={styles.amountLabel}>Amount due</Text>
-            <Text style={styles.amountValue}>{fmt(total)}</Text>
+          <View style={styles.invoiceTitleBlock}>
+            <Text style={styles.invoiceWord}>Invoice</Text>
+            <Text style={styles.invoiceDate}>{form.invoiceDate}</Text>
           </View>
         </View>
 
-        <View style={styles.divider} />
-
-        <View style={styles.metaRow}>
-          <View style={styles.metaBlock}>
-            <Text style={styles.metaLabel}>Invoice date</Text>
-            <Text style={styles.metaValue}>{form.invoiceDate}</Text>
+        <View style={styles.metaSection}>
+          <View style={styles.metaLeft}>
+            <Text style={styles.metaSmallLabel}>Invoice to</Text>
+            <Text style={styles.metaClientName}>{form.clientName}</Text>
+            <Text style={styles.metaDetail}>{form.clientAddress}</Text>
+            <Text style={styles.metaDetail}>{form.clientEmail}</Text>
           </View>
-          <View style={styles.metaBlock}>
-            <Text style={styles.metaLabel}>Due date</Text>
-            <Text style={styles.metaValue}>{form.dueDate}</Text>
-          </View>
-          <View style={styles.metaBlock}>
-            <Text style={styles.metaLabel}>Billed to</Text>
-            <Text style={styles.metaValue}>{form.clientName}</Text>
-            <Text style={styles.metaValueMuted}>{form.clientAddress}</Text>
-            <Text style={styles.metaValueMuted}>{form.clientEmail}</Text>
+          <View style={styles.metaRight}>
+            <Text style={styles.metaSmallLabel}>Invoice number</Text>
+            <Text style={styles.metaInvoiceNumber}>{form.invoiceNumber}</Text>
+            <Text style={styles.metaAmountLabel}>Amount to pay</Text>
+            <Text style={styles.metaAmount}>{fmt(total)}</Text>
           </View>
         </View>
 
         <View style={styles.tableContainer}>
           <View style={styles.tableHeader}>
-            <Text style={[styles.tableHeaderText, styles.colDesc]}>Description</Text>
+            <Text style={[styles.tableHeaderText, styles.colDesc]}>Item & description</Text>
+            <Text style={[styles.tableHeaderText, styles.colDue]}>Due date</Text>
             <Text style={[styles.tableHeaderText, styles.colQty]}>Qty</Text>
             <Text style={[styles.tableHeaderText, styles.colRate]}>Rate</Text>
             <Text style={[styles.tableHeaderText, styles.colAmount]}>Amount</Text>
           </View>
 
           {lineItems.map((item, i) => (
-            <View key={i} style={[styles.tableRow, i % 2 !== 0 && styles.tableRowAlt]}>
+            <View key={i} style={styles.tableRow}>
               <Text style={[styles.tableCell, styles.colDesc]}>{item.description}</Text>
+              <Text style={[styles.tableCell, styles.colDue]}>{form.dueDate}</Text>
               <Text style={[styles.tableCellMono, styles.colQty]}>{item.quantity}</Text>
               <Text style={[styles.tableCellMono, styles.colRate]}>{fmt(item.rate)}</Text>
               <Text style={[styles.tableCellMono, styles.colAmount]}>{fmt(Number(item.quantity) * Number(item.rate))}</Text>
@@ -291,42 +333,56 @@ export default function InvoicePDF({ form, lineItems, logo }) {
         </View>
 
         <View style={styles.totalsSection}>
-          <View style={styles.totalsInner}>
+          <View style={styles.totalsTable}>
             <View style={styles.totalsRow}>
               <Text style={styles.totalsLabel}>Subtotal</Text>
               <Text style={styles.totalsValue}>{fmt(subtotal)}</Text>
             </View>
-            <View style={styles.totalsRow}>
-              <Text style={styles.totalsLabel}>VAT (7.5%)</Text>
-              <Text style={styles.totalsValue}>{fmt(vat)}</Text>
-            </View>
-            <View style={styles.totalsDivider} />
+            {applyVat && (
+              <View style={styles.totalsRow}>
+                <Text style={styles.totalsLabel}>VAT ({vatRate}%)</Text>
+                <Text style={styles.totalsValue}>{fmt(vatAmount)}</Text>
+              </View>
+            )}
             <View style={styles.grandTotalRow}>
-              <Text style={styles.grandTotalLabel}>Total due</Text>
+              <Text style={styles.grandTotalLabel}>Total</Text>
               <Text style={styles.grandTotalValue}>{fmt(total)}</Text>
             </View>
           </View>
         </View>
 
-        <View style={styles.paymentSection}>
-          <Text style={styles.paymentTitle}>Payment details</Text>
-          <View style={styles.paymentRow}>
-            <Text style={styles.paymentKey}>Account name</Text>
-            <Text style={styles.paymentValue}>{form.accountName}</Text>
+        <View style={styles.bottomSection}>
+          <View style={styles.paymentBlock}>
+            <Text style={styles.paymentTitle}>Payment details</Text>
+            <View style={styles.paymentRow}>
+              <Text style={styles.paymentKey}>Account Name</Text>
+              <Text style={styles.paymentValue}>{form.accountName}</Text>
+            </View>
+            <View style={styles.paymentRow}>
+              <Text style={styles.paymentKey}>Account Number</Text>
+              <Text style={styles.paymentValue}>{form.accountNumber}</Text>
+            </View>
+            <View style={styles.paymentRow}>
+              <Text style={styles.paymentKey}>Bank Name</Text>
+              <Text style={styles.paymentValue}>{form.bankName}</Text>
+            </View>
           </View>
-          <View style={styles.paymentRow}>
-            <Text style={styles.paymentKey}>Account number</Text>
-            <Text style={styles.paymentValue}>{form.accountNumber}</Text>
-          </View>
-          <View style={styles.paymentRow}>
-            <Text style={styles.paymentKey}>Bank</Text>
-            <Text style={styles.paymentValue}>{form.bankName}</Text>
+
+          <View style={styles.signatureBlock}>
+            <View style={styles.signatureLine} />
+            <Text style={styles.signatureName}>{form.companyName}</Text>
           </View>
         </View>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>{form.companyName}</Text>
-          <Text style={styles.footerText}>Generated by Invoice App</Text>
+          <View style={styles.footerCol}>
+            <Text style={styles.footerLabel}>Generated by</Text>
+            <Text style={styles.footerLink}>Invoice App</Text>
+          </View>
+          <View style={styles.footerRight}>
+            <Text style={styles.footerDetail}>{form.companyAddress}</Text>
+            <Text style={styles.footerDetail}>{form.companyEmail}</Text>
+          </View>
         </View>
 
       </Page>
