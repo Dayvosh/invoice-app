@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const formatDate = (dateStr: string) => {
+const formatDate = (dateStr) => {
   if (!dateStr) return '—'
   const date = new Date(dateStr)
   return date.toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' })
